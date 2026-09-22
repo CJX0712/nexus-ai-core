@@ -1,0 +1,22 @@
+[project]
+name = "nexus-ai-core"
+version = "1.0.0"
+description = "NexusAI 模块化 AI 能力中台：模型网关 / 知识检索 / 智能体 / 工作流 / 记忆"
+authors = [{ name = "晨星" }]
+readme = "../README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [".venv", "dist", "data", ".testdata"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "B008"]

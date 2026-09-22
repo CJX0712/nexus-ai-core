@@ -1,0 +1,9 @@
+# NexusAI 开发/测试依赖（未锁定）
+# 精确锁定版本见 requirements-dev.lock.txt
+# 作者: 晨星
+
+-r requirements.lock.txt
+
+pytest
+pytest-asyncio
+ruff

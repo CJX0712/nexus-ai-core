@@ -1,0 +1,61 @@
+/* NexusAI 设计令牌：全项目唯一颜色/间距/字号来源，禁止在组件内硬编码色值。
+   作者: 晨星 */
+
+:root {
+  /* 中性色 —— 石墨基调 */
+  --c-bg: #f6f7f9;
+  --c-surface: #ffffff;
+  --c-surface-2: #f1f3f6;
+  --c-surface-3: #e8ebef;
+  --c-border: #dfe3e8;
+  --c-border-strong: #c7ccd4;
+
+  /* 文本 */
+  --c-text: #111827;
+  --c-text-muted: #5b6472;
+  --c-text-faint: #8b93a1;
+
+  /* 强调色 —— 青绿（单一强调，纯色不使用渐变） */
+  --c-accent: #0f766e;
+  --c-accent-hover: #115e59;
+  --c-accent-soft: #d7f0ec;
+  --c-accent-text: #ffffff;
+
+  /* 状态色 */
+  --c-success: #15803d;
+  --c-success-soft: #dcfce7;
+  --c-warn: #b45309;
+  --c-warn-soft: #fef3c7;
+  --c-danger: #b91c1c;
+  --c-danger-soft: #fee2e2;
+
+  /* 间距 */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+
+  /* 圆角 */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.06);
+  --shadow-md: 0 2px 8px rgba(17, 24, 39, 0.08);
+
+  /* 字体 */
+  --font-sans: system-ui, -apple-system, "Segoe UI", "Noto Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* 字号 */
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-md: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 20px;
+  --fs-2xl: 26px;
+}

@@ -1,0 +1,176 @@
+/* NexusAI 控制台样式：所有颜色均引用 tokens.css 变量。
+   作者: 晨星 */
+@import "./tokens.css";
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 布局 ---------- */
+.shell { display: flex; height: 100%; }
+
+.sidebar {
+  width: 208px;
+  flex: 0 0 208px;
+  background: var(--c-surface);
+  border-right: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-4) var(--s-3);
+}
+
+.brand { display: flex; align-items: center; gap: var(--s-2); margin-bottom: var(--s-5); }
+.brand-mark {
+  width: 28px; height: 28px; border-radius: var(--r-sm);
+  background: var(--c-accent); color: var(--c-accent-text);
+  display: grid; place-items: center;
+}
+.brand-name { font-size: var(--fs-lg); font-weight: 650; letter-spacing: -0.01em; }
+.brand-sub { font-size: var(--fs-xs); color: var(--c-text-faint); }
+
+.nav { display: flex; flex-direction: column; gap: var(--s-1); }
+.nav-item {
+  display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-2) var(--s-3);
+  border: 0; border-radius: var(--r-sm);
+  background: transparent; color: var(--c-text-muted);
+  font-size: var(--fs-md); font-family: inherit; text-align: left;
+  cursor: pointer;
+}
+.nav-item:hover { background: var(--c-surface-2); color: var(--c-text); }
+.nav-item.is-active { background: var(--c-accent-soft); color: var(--c-accent); font-weight: 600; }
+
+.sidebar-foot { margin-top: auto; font-size: var(--fs-xs); color: var(--c-text-faint); }
+
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.topbar {
+  height: 56px; flex: 0 0 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--s-5);
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+}
+.topbar h1 { font-size: var(--fs-lg); font-weight: 620; margin: 0; }
+.topbar-meta { display: flex; align-items: center; gap: var(--s-3); font-size: var(--fs-xs); color: var(--c-text-muted); }
+
+.content { flex: 1; overflow: auto; padding: var(--s-5); }
+.panel { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--s-4); }
+
+/* ---------- 基础组件 ---------- */
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  box-shadow: var(--shadow-sm);
+}
+.card-title { font-size: var(--fs-md); font-weight: 620; margin: 0 0 var(--s-3); }
+.card-hint { font-size: var(--fs-xs); color: var(--c-text-muted); margin: 0 0 var(--s-3); }
+
+.row { display: flex; gap: var(--s-2); align-items: center; }
+.row-end { justify-content: flex-end; }
+.grow { flex: 1; min-width: 0; }
+
+input[type="text"], textarea, select {
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--r-sm);
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-family: inherit; font-size: var(--fs-md);
+}
+textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--c-accent-soft);
+  border-color: var(--c-accent);
+}
+
+button.btn {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--r-sm);
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-family: inherit; font-size: var(--fs-md);
+  cursor: pointer;
+  white-space: nowrap;
+}
+button.btn:hover { background: var(--c-surface-2); }
+button.btn-primary {
+  background: var(--c-accent); border-color: var(--c-accent); color: var(--c-accent-text);
+}
+button.btn-primary:hover { background: var(--c-accent-hover); }
+button.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: var(--s-1);
+  padding: 2px var(--s-2);
+  border-radius: 999px;
+  font-size: var(--fs-xs); font-weight: 600;
+  background: var(--c-surface-2); color: var(--c-text-muted);
+}
+.pill-ok { background: var(--c-success-soft); color: var(--c-success); }
+.pill-warn { background: var(--c-warn-soft); color: var(--c-warn); }
+.pill-danger { background: var(--c-danger-soft); color: var(--c-danger); }
+.pill-accent { background: var(--c-accent-soft); color: var(--c-accent); }
+
+.mono { font-family: var(--font-mono); font-size: var(--fs-sm); }
+.muted { color: var(--c-text-muted); }
+.faint { color: var(--c-text-faint); }
+.empty {
+  padding: var(--s-5); text-align: center;
+  color: var(--c-text-faint); font-size: var(--fs-sm);
+  border: 1px dashed var(--c-border-strong); border-radius: var(--r-md);
+}
+
+/* ---------- 消息流 ---------- */
+.messages { display: flex; flex-direction: column; gap: var(--s-3); }
+.msg { display: flex; gap: var(--s-3); }
+.msg-body {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--c-surface-2);
+  white-space: pre-wrap; word-break: break-word;
+}
+.msg-user .msg-body { background: var(--c-accent-soft); }
+.msg-avatar {
+  width: 26px; height: 26px; flex: 0 0 26px; border-radius: var(--r-sm);
+  display: grid; place-items: center;
+  background: var(--c-surface-3); color: var(--c-text-muted);
+}
+.msg-user .msg-avatar { background: var(--c-accent); color: var(--c-accent-text); }
+
+/* ---------- 列表 / 溯源 ---------- */
+.list { display: flex; flex-direction: column; gap: var(--s-2); }
+.list-item {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-sm);
+  padding: var(--s-3);
+  background: var(--c-surface-2);
+}
+.kv { display: grid; grid-template-columns: 140px 1fr; gap: var(--s-2) var(--s-4); font-size: var(--fs-sm); }
+.kv dt { color: var(--c-text-muted); }
+.kv dd { margin: 0; }
+
+.code-block {
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-sm);
+  padding: var(--s-3);
+  font-family: var(--font-mono); font-size: var(--fs-sm);
+  white-space: pre-wrap; word-break: break-all;
+  max-height: 320px; overflow: auto;
+}

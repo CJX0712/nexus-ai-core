@@ -1,0 +1,30 @@
+# NexusAI 后端直接依赖（未锁定，用于人类阅读与升级）
+# 精确锁定版本见 requirements.lock.txt；重新生成：pip-compile requirements.in
+# 作者: 晨星
+
+# Web 服务层
+fastapi
+uvicorn
+python-multipart
+
+# 数据契约
+pydantic
+
+# 数值与向量检索
+numpy
+faiss-cpu          # Meta FAISS：稠密向量检索
+rank-bm25          # 稀疏检索，与稠密结果做 RRF 融合
+
+# 嵌入（Qdrant fastembed，ONNX CPU 推理，无需 torch）
+fastembed
+
+# 本地 GGUF 推理（llama.cpp 官方绑定）
+llama-cpp-python
+
+# 文档解析
+pypdf
+
+# 网络与日志
+httpx
+loguru
+python-dotenv

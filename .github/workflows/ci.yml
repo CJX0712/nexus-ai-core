@@ -1,0 +1,56 @@
+# NexusAI 持续集成：干净环境验证后端测试与前端构建（作者: 晨星）
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  backend:
+    name: 后端测试与静态检查
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: 安装锁定依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.lock.txt
+          pip install pytest pytest-asyncio ruff
+
+      - name: 静态检查
+        run: python -m ruff check .
+
+      - name: 运行测试
+        run: python -m pytest tests -q
+
+  frontend:
+    name: 前端类型检查与构建
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: 安装依赖
+        run: npm ci || npm install
+
+      - name: 类型检查
+        run: npm run typecheck
+
+      - name: 生产构建
+        run: npx vite build

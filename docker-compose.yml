@@ -1,0 +1,43 @@
+# NexusAI 一键编排：后端 API + 前端控制台（作者: 晨星）
+# 使用：docker compose up --build   然后访问 http://localhost:8080
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: nexus-ai-backend:1.0.0
+    container_name: nexus-backend
+    ports:
+      - "8000:8000"
+    environment:
+      NEXUS_ENV: production
+      NEXUS_DATA_DIR: /app/data
+      # 无 API Key 时自动降级：本地 GGUF -> 离线抽取式应答，链路不中断
+      NEXUS_LLM_PROVIDER: ${NEXUS_LLM_PROVIDER:-auto}
+      NEXUS_LLM_BASE_URL: ${NEXUS_LLM_BASE_URL:-}
+      NEXUS_LLM_API_KEY: ${NEXUS_LLM_API_KEY:-}
+      NEXUS_LLM_MODEL: ${NEXUS_LLM_MODEL:-}
+      NEXUS_EMBED_PROVIDER: ${NEXUS_EMBED_PROVIDER:-auto}
+      NEXUS_LOCAL_GGUF_PATH: ${NEXUS_LOCAL_GGUF_PATH:-}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: nexus-ai-frontend:1.0.0
+    container_name: nexus-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
