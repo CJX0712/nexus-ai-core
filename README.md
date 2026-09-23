@@ -1,5 +1,11 @@
 # NexusAI · 模块化 AI 能力中台
 
+<p align="center">
+  <a href="https://github.com/CJX0712/nexus-ai-core/actions/workflows/ci.yml"><img src="https://github.com/CJX0712/nexus-ai-core/actions/workflows/ci.yml/badge.svg" alt="ci"></a>
+  <a href="https://github.com/CJX0712/nexus-ai-core/releases"><img src="https://img.shields.io/github/v/release/CJX0712/nexus-ai-core?sort=semver" alt="release"></a>
+  <img src="https://img.shields.io/badge/author-%E6%99%A8%E6%98%9F-1f6feb" alt="author">
+</p>
+
 > 一套端到端可运行的 AI 系统开发环境：优先整合复用业界领先开源成果，
 > 按单一职责划分模块，每个模块可独立验证，又能协同组成完整链路。
 >
