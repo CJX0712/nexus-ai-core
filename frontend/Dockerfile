@@ -2,8 +2,10 @@
 FROM node:22-alpine AS build
 
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --ignore-scripts || npm install --ignore-scripts
+# 注: package-lock.json 生成于 Windows, 会导致 npm 可选平台依赖 (rollup musl) 缺失,
+# 故这里不复制锁文件, 直接 npm install 让 npm 重新解析平台依赖。
+COPY package.json ./
+RUN npm install --ignore-scripts
 
 COPY tsconfig.json vite.config.ts index.html ./
 COPY src/ ./src/
