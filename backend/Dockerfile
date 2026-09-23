@@ -10,9 +10,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# 优先安装依赖层，利用 Docker 缓存
+# 优先安装依赖层，利用 Docker 缓存。
+# 注: llama-cpp-python 需编译工具链, 默认剔除；离线栈用内置降级后端 (auto -> 抽取式应答)。
 COPY requirements.lock.txt ./
-RUN pip install --no-cache-dir -r requirements.lock.txt
+RUN grep -viE '^[[:space:]]*llama[_-]cpp[_-]python' requirements.lock.txt > /tmp/requirements.lock \
+ && pip install --no-cache-dir -r /tmp/requirements.lock
 
 COPY app/ ./app/
 COPY pyproject.toml ./
