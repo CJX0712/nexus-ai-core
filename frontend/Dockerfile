@@ -1,5 +1,5 @@
 # NexusAI 前端控制台镜像（构建产物由 Nginx 托管，作者: 晨星）
-FROM node:22-alpine AS build
+FROM node:25-alpine AS build
 
 WORKDIR /app
 # 注: package-lock.json 生成于 Windows, 会导致 npm 可选平台依赖 (rollup musl) 缺失,
