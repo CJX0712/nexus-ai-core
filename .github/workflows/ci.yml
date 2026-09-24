@@ -19,6 +19,7 @@ jobs:
 
       - uses: actions/setup-python@v7
         with:
+          cache: pip
           python-version: "3.13"
 
       - name: 安装锁定依赖
