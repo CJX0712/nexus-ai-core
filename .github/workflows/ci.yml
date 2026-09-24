@@ -47,7 +47,7 @@ jobs:
           node-version: "22"
 
       - name: 安装依赖
-        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps   # lockfile removed: Windows-generated lock lacks linux optional deps
 
       - name: 类型检查
         run: npm run typecheck
